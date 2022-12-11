@@ -25,7 +25,7 @@ pub use fmt::LokiFormatter;
 #[cfg(feature = "logfmt")]
 mod logfmt;
 #[cfg(feature = "logfmt")]
-pub use logfmt::LogfmtFormatter;
+pub use logfmt::{LogfmtFormatter, LogfmtAutoFields};
 
 /// `LokiBuilder` is used to construct the `Loki` object.
 #[must_use = "Has no affect unless .build() is called."]
