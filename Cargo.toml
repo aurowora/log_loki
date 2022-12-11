@@ -1,0 +1,37 @@
+[package]
+name = "log_loki"
+description = "Provides loki logging for use with the log crate. Can be used standalone or with a logging framework like fern."
+version = "0.1.0"
+edition = "2021"
+license = "MPL-2.0"
+authors = ["Aurora McGinnis <aurora@aurora.vg>"]
+categories = ['development-tools::debugging']
+keywords = ['loki', 'logging', 'log', 'logfmt']
+repository = "https://github.com/aurowora/log_loki"
+readme = "README.md"
+
+[dependencies]
+ureq = { version = "^2.5.0", default-features=false, features=["charset"] }
+flate2 = { version = "^1.0.25", optional=true }
+rustls = { version = "^0.20.1", optional=true }
+url = "^2.3.1"
+log = { version = "^0.4.17", features = ["std"] }
+serde = { version = "^1", features = ["derive"] }
+serde_json = "^1.0"
+derivative = "^2.2.0"
+kanal = "^0.1.0-pre7"
+bitflags = { version = "^1.3.2", optional = true }
+
+[features]
+# Enable support for TLS-enabled Loki hosts with ureq/tls
+tls = ["ureq/tls", "dep:rustls"]
+# Use your system's certificate store instread of webpki-roots
+tls-native-certs = ["ureq/native-certs"]
+# Compress outgoing logs with gzip via the flate2 crate
+compress = ["dep:flate2"]
+# Enable unstable key value support for structured logging
+kv_unstable = ["log/kv_unstable"]
+# Enable logfmt format support
+logfmt = ["dep:bitflags"]
+# Default options
+default = ["tls", "tls-native-certs", "logfmt", "compress"]
