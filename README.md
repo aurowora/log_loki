@@ -10,7 +10,7 @@ To add log_loki to your project, ensure the following two lines are present in y
 
 ```toml
 log = "^0.4.17"
-log_loki = "^0.1.0"
+log_loki = "^0.1.1"
 ```
 
 ### Features
@@ -80,6 +80,10 @@ logger().flush();
 For efficiency's sake, the logger buffers log messages internally and waits until either a certain amount of messages have been logged or a certain amount of time has passed. You can tweek the number of messages
 or the duration between auto-flushes using the `max_logs()` and `max_log_lifetime()` `LokiBuilder` methods respectively. It is also recommended that you arrange for all exit paths in your code to call `logger().flush();`
 to minimize the risk of any logs being dropped.
+
+## Documentation
+
+API documentation can be found [here](https://docs.rs/log_loki/0.1.1/log_loki/).
 
 ## License
 
